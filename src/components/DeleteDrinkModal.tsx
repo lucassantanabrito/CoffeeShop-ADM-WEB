@@ -30,10 +30,10 @@ export function DeleteDrinkModal({ drink, onClose }: Props) {
       <Modal.Container>
         <Modal.Dialog className="sm:max-w-100">
           <Modal.CloseTrigger />
-          <Modal.Header>
-            <Modal.Heading>Excluir bebida</Modal.Heading>
+          <Modal.Header className="px-6 pt-5 pb-0">
+            <Modal.Heading className="text-lg font-bold">Excluir bebida</Modal.Heading>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="px-6 py-5">
             <p className="text-sm text-muted">
               Tem certeza que deseja excluir <strong>{drink.label}</strong>? Essa ação
               não pode ser desfeita.
@@ -44,12 +44,13 @@ export function DeleteDrinkModal({ drink, onClose }: Props) {
               </p>
             )}
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onPress={onClose}>
+          <Modal.Footer className="gap-3 px-6 pt-3 pb-6">
+            <Button variant="secondary" className="flex-1" onPress={onClose}>
               Cancelar
             </Button>
             <Button
               variant="danger"
+              className="flex-1"
               isDisabled={mutation.isPending}
               onPress={() => mutation.mutate()}
             >

@@ -70,12 +70,12 @@ export function DrinkFormModal({ drink, onClose }: Props) {
       <Modal.Container>
         <Modal.Dialog className="sm:max-w-110">
           <Modal.CloseTrigger />
-          <Modal.Header>
-            <Modal.Heading>{isEdit ? "Editar Bebida" : "Nova Bebida"}</Modal.Heading>
+          <Modal.Header className="px-6 pt-5 pb-0">
+            <Modal.Heading className="text-lg font-bold">{isEdit ? "Editar Bebida" : "Nova Bebida"}</Modal.Heading>
           </Modal.Header>
           <form onSubmit={handleSubmit((values) => mutation.mutate(values))} noValidate>
-            <Modal.Body className="flex flex-col gap-5">
-              <TextField isInvalid={!!errors.label} fullWidth>
+            <Modal.Body className="flex flex-col gap-5 px-6 py-5">
+              <TextField isInvalid={!!errors.label} fullWidth className="flex flex-col gap-2">
                 <Label>Nome</Label>
                 <Input placeholder="Ex: Chai Latte" autoFocus {...register("label")} />
                 {errors.label && (
@@ -83,7 +83,7 @@ export function DrinkFormModal({ drink, onClose }: Props) {
                 )}
               </TextField>
 
-              <TextField isInvalid={!!errors.price} fullWidth>
+              <TextField isInvalid={!!errors.price} fullWidth className="flex flex-col gap-2">
                 <Label>Valor</Label>
                 <Controller
                   control={control}
@@ -108,12 +108,16 @@ export function DrinkFormModal({ drink, onClose }: Props) {
                 control={control}
                 name="hasMilk"
                 render={({ field }) => (
-                  <Switch isSelected={field.value} onChange={field.onChange}>
+                  <Switch
+                    isSelected={field.value}
+                    onChange={field.onChange}
+                    className="flex w-full flex-row-reverse items-center justify-between gap-3"
+                  >
                     <Switch.Control>
                       <Switch.Thumb />
                     </Switch.Control>
-                    <Switch.Content>
-                      <Label>Tem leite?</Label>
+                    <Switch.Content className="flex flex-col gap-0.5">
+                      <span className="text-sm font-medium">Tem leite?</span>
                       <span className="text-xs text-muted">
                         Habilita a escolha de tipo de leite no pedido
                       </span>
@@ -128,11 +132,11 @@ export function DrinkFormModal({ drink, onClose }: Props) {
                 </p>
               )}
             </Modal.Body>
-            <Modal.Footer>
-              <Button type="button" variant="secondary" onPress={onClose}>
+            <Modal.Footer className="gap-3 px-6 pt-3 pb-6">
+              <Button type="button" variant="secondary" className="flex-1" onPress={onClose}>
                 Cancelar
               </Button>
-              <Button type="submit" isDisabled={mutation.isPending}>
+              <Button type="submit" className="flex-1" isDisabled={mutation.isPending}>
                 {mutation.isPending ? "Salvando..." : "Salvar Bebida"}
               </Button>
             </Modal.Footer>
