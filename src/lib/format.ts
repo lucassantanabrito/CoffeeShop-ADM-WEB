@@ -1,3 +1,5 @@
+import { TIMEZONE } from "./config";
+
 const brl = new Intl.NumberFormat("pt-BR", {
   style: "currency",
   currency: "BRL",
@@ -16,4 +18,24 @@ export function maskBRL(raw: string): string {
     return "";
   }
   return formatBRL(Number(digits) / 100);
+}
+
+const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
+  timeZone: TIMEZONE,
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+});
+const timeFormatter = new Intl.DateTimeFormat("pt-BR", {
+  timeZone: TIMEZONE,
+  hour: "2-digit",
+  minute: "2-digit",
+});
+const percentFormatter = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 });
+
+export const formatDate = (ts: number) => dateFormatter.format(ts);
+export const formatTime = (ts: number) => timeFormatter.format(ts);
+
+export function formatDeltaPct(pct: number): string {
+  return `${pct > 0 ? "+" : ""}${percentFormatter.format(pct)}%`;
 }

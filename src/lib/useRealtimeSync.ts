@@ -18,6 +18,7 @@ export function useRealtimeSync() {
     }
     for (const event of ["order:created", "order:updated", "order:deleted"]) {
       socket.on(event, invalidate("orders"));
+      socket.on(event, invalidate("reports"));
     }
 
     return () => {

@@ -14,7 +14,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex w-65 shrink-0 flex-col justify-between border-r border-border bg-surface px-5 py-6">
+    <aside className="sticky top-0 flex h-screen w-65 shrink-0 flex-col justify-between border-r border-border bg-surface px-5 py-6">
       <div className="flex flex-col gap-7">
         <div className="flex items-center gap-2.5 px-1">
           <Coffee className="size-6 text-accent" aria-hidden />
